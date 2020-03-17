@@ -1,0 +1,29 @@
+spring:
+  h2:
+    console:
+      enable: false
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  datasource:
+    url: jdbc:mysql://${mysql.hostname}:3306/${mysql.database}
+    username: ${mysql.username}
+    password: ${mysql.password}
+mysql:
+  hostname: 192.168.23.20
+  database: movie
+  port: 3306
+  username: root
+  password: temp1234
+movie:
+  base:
+    directory: /Volumes/disk_01-1/movies
+themoviedb:
+  api:
+    key: 6e8cf4d55f1e065528f8d1452d58dd5f
+

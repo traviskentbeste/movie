@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Events</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<div class="container">
+
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+<div class="row mt-3" th:each="theMovieDb, iterStat: ${theMovieDbs}" th:if="not ${iterStat.index % 4    }">
+
+        <div class="col-3 mb-1">
+            <div class="card" style="width: 100%">
+                <img th:src="'http://image.tmdb.org/t/p/w500' + ${theMovieDb.posterPath}" class="card-img-top">
+                <div class="card-body">
+                    <h6 class="card-title"><span th:text="${theMovieDb.title}"></span></h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 mb-1" th:if="${iterStat.index + 1 < theMovieDbsSize}">
+            <div class="card" style="width: 100%">
+                <img th:src="'http://image.tmdb.org/t/p/w500' + ${theMovieDbs[iterStat.index + 1].posterPath}" class="card-img-top">
+                <div class="card-body">
+                    <h6 class="card-title"><span th:text="${theMovieDbs[iterStat.index + 1].title}"></span></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 mb-1" th:unless="${iterStat.index + 1 < theMovieDbsSize}">
+            &nbsp;
+        </div>
+
+        <div class="col-3 mb-1" th:if="${iterStat.index + 2 < theMovieDbsSize}">
+            <div class="card" style="width: 100%">
+                <img th:src="'http://image.tmdb.org/t/p/w500' + ${theMovieDbs[iterStat.index + 2].posterPath}" class="card-img-top">
+                <div class="card-body">
+                    <h6 class="card-title"><span th:text="${theMovieDbs[iterStat.index + 2].title}"></span></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 mb-1" th:unless="${iterStat.index + 2 < theMovieDbsSize}">
+            &nbsp;
+        </div>
+
+        <div class="col-3 mb-1" th:if="${iterStat.index + 3 < theMovieDbsSize}">
+            <div class="card" style="width: 100%">
+                <img th:src="'http://image.tmdb.org/t/p/w500' + ${theMovieDbs[iterStat.index + 3].posterPath}" class="card-img-top">
+                <div class="card-body">
+                    <h6 class="card-title"><span th:text="${theMovieDbs[iterStat.index + 3].title}"></span></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 mb-1" th:unless="${iterStat.index + 3 < theMovieDbsSize}">
+            &nbsp;
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Events</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<div class="container">
+
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <form method="post">
+
+        <div class="row mt-5">
+            <div class="col-12">
+
+                <table id="events" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                    <tr>
+
+                        <th>popularity</th>
+                        <th>title</th>
+                        <th>overview</th>
+                        <th>&nbsp;</th>
+
+                        <!-- <th>releaseDate</th> -->
+                        <!-- <th>voteAverage</th> -->
+                        <!-- <th>id</th> -->
+                        <!-- <th>originalLanguage</th> -->
+                        <!-- <th>originalTitle</th> -->
+                        <!-- <th>video</th> -->
+                        <!-- <th>posterPath</th> -->
+                        <!-- <th>backdropPath</th> -->
+                        <!-- <th>voteCount</th> -->
+                        <!-- <th>adult</th> -->
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="theMovieDb: ${theMovieDbList}">
+
+                        <td th:text="${theMovieDb.popularity}">popularity</td>
+                        <td th:if="${theMovieDb.releaseDate}">
+                            <span th:text="${theMovieDb.title}">title</span>
+                            <br>
+                            <small th:text="${#dates.format(theMovieDb.releaseDate, 'yyyy-MM-dd')}">releaseDate</small>
+                        </td>
+                        <td th:unless="${theMovieDb.releaseDate}">
+                            <span th:text="${theMovieDb.title}">title</span>
+                        </td>
+                        <td th:text="${theMovieDb.overview}">overview</td>
+                        <td>
+                            <a th:href="'/movie/' + ${movieId} + '/add/' + ${theMovieDb.id}" class="btn btn-primary">Select</a>
+                        </td>
+                        <!-- <td th:text="${theMovieDb.voteAverage}">voteAverage</td> -->
+                        <!-- <td th:text="${theMovieDb.id}">id</td> -->
+                        <!-- <td th:text="${theMovieDb.originalLanguage}">originalLanguage</td> -->
+                        <!-- <td th:text="${theMovieDb.originalTitle}">originalTitle</td> -->
+                        <!-- <td th:text="${theMovieDb.video}">video</td> -->
+                        <!-- <td th:text="${theMovieDb.posterPath}">posterPath</td> -->
+                        <!-- <td th:text="${theMovieDb.backdropPath}">backdropPath</td> -->
+                        <!-- <td th:text="${theMovieDb.voteCount}">voteCount</td> -->
+                        <!-- <td th:text="${theMovieDb.adult}">adult</td> -->
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#events').DataTable({
+            "order": [
+                [0, 'desc']
+            ],
+            "columnDefs": [
+                {
+                    "targets": [ 0 ],
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+                    "targets": [1],
+                    "width" : "25%"
+                },
+                {
+                    "targets": [ 3 ],
+                    "sortable": false,
+                    "searchable": false
+                }
+            ]
+        });
+    });
+</script>
+
+</body>
+</html>

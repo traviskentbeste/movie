@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Events</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+<div class="container">
+
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <div class="row">
+        <div class="col-12">
+            <h1 th:text="${movieDTO.filename}">filename</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <form method="post">
+                <input type="hidden" id="id" name="id" th:value="${movieDTO.id}">
+                <hr>
+                <label for="name">Name</label>
+                <input autocomplete="off" class="form-control" type="text" name="name" id="name">
+                <hr>
+                <input class="btn btn-primary" type="submit" name="submit" value="Search">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
